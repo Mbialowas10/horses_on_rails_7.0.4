@@ -49,7 +49,8 @@ gem "bootsnap", require: false
 # gem "image_processing", "~> 1.2"
 gem 'faker', :git => 'https://github.com/faker-ruby/faker.git', :branch => 'main'
 #gem 'activeadmin' #Admin Dashboard as a Rails Engine
-#gem 'devise' #provides username and password authentication libraries
+gem 'activeadmin', '~> 2.14'
+gem 'devise' #provides username and password authentication libraries
 gem 'sassc-rails'
 
 group :development, :test do
