@@ -1,7 +1,26 @@
-# This file should contain all the record creation needed to seed the database with its default values.
-# The data can then be loaded with the bin/rails db:seed command (or created alongside the database with db:setup).
-#
-# Examples:
-#
-#   movies = Movie.create([{ name: "Star Wars" }, { name: "Lord of the Rings" }])
-#   Character.create(name: "Luke", movie: movies.first)
+AdminUser.destroy_all
+Horse.destroy_all
+Breed.destroy_all
+
+NUMBER_OF_BREEDS = 4
+HORSES_PER_BREED = 4
+
+NUMBER_OF_BREEDS.times do
+  breed = Breed.find_or_create_by(name: Faker::Creature::Horse.unique.breed)
+
+  HORSES_PER_BREED.times do
+    horse = breed.horses.find_or_create_by(
+      name: Faker::Creature::Horse.unique.name,
+      age: rand(3..348),
+      top_speed: 3.1415926 * rand(20..56),
+      number_of_legs: rand(1..14)
+    )
+  end
+end
+
+puts "Created #{Breed.count} Breeds."
+puts "Created #{Horse.count} Horses."
+if Rails.env.development?
+  AdminUser.create!(email: 'admin@example.com', password: 'password',
+                    password_confirmation: 'password')
+end
