@@ -4,7 +4,16 @@ ActiveAdmin.register Horse do
   #
   # Uncomment all parameters which should be permitted for assignment
   #
-  permit_params :name, :age, :top_speed, :number_of_legs, :breeds_id
+  permit_params :name, :age, :top_speed, :number_of_legs, :breeds_id, :image
+  form do |f|
+    f.semantic_errors
+    f.inputs
+    # let's add this piece:
+    f.inputs do
+      f.input :image, as: :file
+    end
+    f.actions
+  end
   #
   # or
   #

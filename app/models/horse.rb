@@ -1,6 +1,7 @@
 class Horse < ApplicationRecord
   validates :name, :top_speed, :number_of_legs, :age, presence: true
-  # has_one_attached :image
+  #has_one_attached :image
+  has_one_attached :image
   belongs_to :breed
 
   def self.ransackable_attributes(_auth_object = nil)
